@@ -46,4 +46,26 @@ button = tk.Button(
 )
 button.grid(row=0, column=2, padx=10)
 
+def update_task_frame(self):
+        # Clear existing tasks
+        for widget in self.task_frame.winfo_children():
+            widget.destroy()
+
+for i, task in tasks:
+    task_label = tk.Label(text=task)
+    task_label.grid(row=i, column=0, sticky="w")
+    delete_button = tk.Button(
+        master=self.task_frame,
+        text="Delete",
+        command=lambda index=i: self.delete_task(index)
+    )
+    delete_button.grid(row=i, column=1, padx=5)
+    complete_button = tk.Button(
+        master=self.task_frame,
+        text="Complete",
+        command=lambda index=i: self.complete_task(index)
+    )
+    complete_button.grid(row=i, column=2, padx=5)
+
+
 window.mainloop()
