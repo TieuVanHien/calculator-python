@@ -25,17 +25,18 @@ def add_task():
     if task:
         tasks.append(task)  # Add the task to the list
         entry_task.delete(0, tk.END)  # Clear the entry widget
-        update_task_label()
+        update_task_frame()  # Update the task frame
 
-def update_task_label():
-    todo_task.config(text="\n".join(tasks))
-     
+# Create a label frame
+frame1 = tk.LabelFrame(window, bg="white")
+frame1.grid(row=2, column=1)
+
 # label for created tasks
-label_task = tk.Label(master=window, text="Task Created")
-label_task.grid(row=1, column=1)
+label_created_task = tk.Label(master=window, text="Task Created")
+label_created_task.grid(row=1, column=1)
 
-todo_task = tk.Label(master=window, text="", bg="white", width=30, )
-todo_task.grid(row=2, column=1)
+todo_task = tk.Label(frame1, bg="white", text="", width=30)
+todo_task.grid(row=0, column=0)
 
 # button
 button = tk.Button(
@@ -46,26 +47,25 @@ button = tk.Button(
 )
 button.grid(row=0, column=2, padx=10)
 
-def update_task_frame(self):
-        # Clear existing tasks
-        for widget in self.task_frame.winfo_children():
-            widget.destroy()
+# Configure grid for resizing
+frame1.grid_rowconfigure(0, weight=1)
+frame1.grid_columnconfigure(0, weight=1)
 
-for i, task in tasks:
-    task_label = tk.Label(text=task)
-    task_label.grid(row=i, column=0, sticky="w")
-    delete_button = tk.Button(
-        master=self.task_frame,
-        text="Delete",
-        command=lambda index=i: self.delete_task(index)
-    )
-    delete_button.grid(row=i, column=1, padx=5)
-    complete_button = tk.Button(
-        master=self.task_frame,
-        text="Complete",
-        command=lambda index=i: self.complete_task(index)
-    )
-    complete_button.grid(row=i, column=2, padx=5)
+def update_task_frame():
+    # Clear existing tasks
+    for i, task in enumerate(tasks):
+        task_label = tk.Label(master=frame1, text=task)
+        task_label.grid(row=i, column=0, sticky="w")
+        delete_button = tk.Button(
+            master=frame1,
+            text="Delete",
+        )
+        delete_button.grid(row=i, column=1, padx=5)
+        complete_button = tk.Button( 
+            master=frame1,
+            text="Complete",
+        )
+        complete_button.grid(row=i, column=2, padx=5)
 
-
+update_task_frame()    
 window.mainloop()
