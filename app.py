@@ -22,12 +22,13 @@ def add_task():
         update_task_frame()  # Update the task frame
 
 # Create a created task frame
-frame1 = tk.LabelFrame(window, bg="white", width=60)
-frame1.grid(row=2, column=0, padx=10)
+frame1 = tk.LabelFrame(window, bg="white", width=100)
+frame1.grid(row=2, column=0, padx=10, sticky="nwe")
 
 # Create completed task frame
-frame2 = tk.LabelFrame(window, bg="white", width=60)
-frame2.grid(row=2, column=2, padx=10)
+frame2 = tk.LabelFrame(window, bg="white", width=100)
+frame2.grid(row=2, column=1, padx=10, sticky="nwe")
+frame2.configure(bg="white")
 
 # label for created tasks
 label_created_task = tk.Label(master=window, text="Task Created")
@@ -38,9 +39,9 @@ todo_task.grid(row=0, column=0)
 
 # Label for completed tasks
 label_completed = tk.Label(master=window, text="Completed Tasks")
-label_completed.grid(row=1, column=2)
+label_completed.grid(row=1, column=1)
 
-completed_task = tk.Label(frame2, bg="white",text="")
+completed_task = tk.Label(frame2, bg="white",text="", width=60)
 completed_task.grid(row=0, column=0)
 
 # button
