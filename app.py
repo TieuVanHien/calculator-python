@@ -4,7 +4,7 @@ window = tk.Tk()
 window.geometry("600x500")
 
 # create label and entry for task name
-label_task = tk.Label(master=window, text="Task:", width=20)
+label_task = tk.Label(master=window, text="Task:", width=15)
 label_task.grid(row=0, column=0)
 
 entry_task = tk.Entry(master=window, width=50)
@@ -65,7 +65,6 @@ def completed_taks(index):
     completed_tasks.append(task)
     update_task_frame()
 
-
 def update_task_frame():
     for widget in frame1.winfo_children():
         widget.destroy()
@@ -89,14 +88,15 @@ def update_task_frame():
         widget.destroy()
      # Update completed tasks frame
     for i, task in enumerate(completed_tasks):
-        task_label = tk.Label(master=frame2, text=task)
-        task_label.grid(row=i, column=0, sticky="w")
-        # delete_button = tk.Button(
-        #     master=frame2,
-        #     text="Delete",
-        #     command=lambda index=i: delete_completed_task(index)
-        # )
-        # delete_button.grid(row=i, column=1, padx=5)    
+        completed_task = tk.Label(master=frame2, text=task)
+        completed_task.grid(row=i, column=0, sticky="ewns")
+
+# Button to remove all completed tasks
+remove_all_button = tk.Button(
+    master=frame2,
+    text="Remove All",
+)
+remove_all_button.grid(row=0, column=0, padx=10, sticky="e")    
 
 
 update_task_frame()    
